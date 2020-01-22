@@ -29,7 +29,7 @@ spec:
     - cat
     tty: true
   - name: kubectl
-    image: gcr.io/cloud-builders/kubectl
+    image: seldonio/k8s-deployer:latest
     command:
     - cat
     tty: true
