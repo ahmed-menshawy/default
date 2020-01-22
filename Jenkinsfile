@@ -45,6 +45,8 @@ spec:
     - name: docker-sock
       hostPath:
         path: /var/vcap/data/sys/run/docker/docker.sock
+  imagePullSecrets:
+  - name: regcred
 """
 }
   }
