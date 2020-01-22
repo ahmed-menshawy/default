@@ -64,6 +64,7 @@ spec:
       steps {
         container('docker') {
           sh "docker build -t ${imageTag} ."
+          sh "docker push ${imageTag}"
         }
       }
     }
