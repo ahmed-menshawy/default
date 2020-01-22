@@ -41,15 +41,15 @@ spec:
     volumeMounts:
     - mountPath: /var/run/docker.sock
       name: docker-sock
+    env:
+    - name: DOCKER_HOST
+      value: "unix:///var/run/docker.sock"
+    - name: DOCKER_OPTS
+      value: "--insecure-registry=art4lab0.labs.mastercard.com:5001"
   volumes:
     - name: docker-sock
       hostPath:
         path: /var/vcap/data/sys/run/docker/docker.sock
-  env:
-  - name: DOCKER_HOST
-    value: "unix:///var/run/docker.sock"
-  - name: DOCKER_OPTS
-    value: "--insecure-registry=art4lab0.labs.mastercard.com:5001"
 
   imagePullSecrets:
   - name: regcred
