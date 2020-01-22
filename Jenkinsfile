@@ -33,6 +33,18 @@ spec:
     command:
     - cat
     tty: true
+  - name: docker
+    image: docker:latest
+    command:
+    - cat
+    tty: true
+    volumeMounts:
+    - mountPath: /var/run/docker.sock
+      name: docker-sock
+  volumes:
+    - name: docker-sock
+      hostPath:
+        path: /var/vcap/data/sys/run/docker/docker.sock
 """
 }
   }
@@ -50,8 +62,8 @@ spec:
     }
     stage('Build and push image with Container Builder') {
       steps {
-        container('gcloud') {
-          sh "PYTHONUNBUFFERED=1 gcloud builds submit -t ${imageTag} ."
+        container('docker') {
+          sh "docker build -t ${imageTag} ."
         }
       }
     }
