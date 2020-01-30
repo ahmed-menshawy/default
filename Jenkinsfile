@@ -24,7 +24,7 @@ spec:
     - cat
     tty: true
   - name: gcloud
-    image: gcr.io/cloud-builders/gcloud
+    image: gcr.io/cloud-builders/gcloud:latest
     command:
     - cat
     tty: true
