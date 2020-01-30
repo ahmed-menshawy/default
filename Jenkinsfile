@@ -69,8 +69,11 @@ spec:
     stage('Build and push image with Container Builder') {
       steps {
         container('docker') {
+        withCredentials([usernamePassword(credentialsId: 'art4lab0-docker-deploy', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
           sh "docker build -t ${imageTag} ."
+          sh "docker login art4lab0.labs.mastercard.com:5001 --username ${USER} --password ${PASS}"
           sh "docker push ${imageTag}"
+          }
         }
       }
     }
