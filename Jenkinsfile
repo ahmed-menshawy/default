@@ -50,7 +50,7 @@ spec:
   volumes:
   - name: docker-sock
     hostPath:
-      path: /var/vcap/data/sys/run/docker/docker.sock
+      path: /var/vcap/sys/run/docker/docker.sock
 """
 }
   }
