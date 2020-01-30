@@ -113,8 +113,8 @@ spec:
         container('kubectl') {
         withCredentials([file(credentialsId: 'kubeconfig-aiml-lower-env', variable: 'KUBECONFIG')]) {
           // Create namespace if it doesn't exist
+          sh "kubectl config --kubeconfig ${KUBECONFIG} --cluster=exp"
           sh "kubectl --kubeconfig ${KUBECONFIG} cluster-info"
-          echo "${KUBECONFIG}"
           sh("kubectl --kubeconfig ${KUBECONFIG} --cluster=exp get ns ${env.BRANCH_NAME} || kubectl --kubeconfig ${KUBECONFIG} --cluster=exp create ns ${env.BRANCH_NAME}")
           // Don't use public load balancing for development branches
           sh("sed -i.bak 's#LoadBalancer#ClusterIP#' ./k8s/services/frontend.yaml")
