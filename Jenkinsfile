@@ -41,9 +41,6 @@ spec:
     volumeMounts:
     - mountPath: /var/run/docker.sock
       name: docker-sock
-    - name: docker-config
-      mountPath: /root/.docker
-      readOnly: true
 
     env:
     - name: DOCKER_HOST
@@ -54,17 +51,6 @@ spec:
   - name: docker-sock
     hostPath:
       path: /var/vcap/data/sys/run/docker/docker.sock
-
-  - name: docker-config
-    secret:
-      secretName: regcred
-      items:
-        - key: .dockerconfigjson
-          path: config.json
-
-
-  imagePullSecrets:
-  - name: regcred
 """
 }
   }
